@@ -1,7 +1,7 @@
 # Introduction
 This repository contains the codes to generate different types of constrained (and other) power-law surrogates. It allows you to
 
-- generate constrained surrogates based on a time series.
+- generate constrained surrogates based on a time series
 - reproduce the results of the manuscript *Non-parametric power-law surrogates", by Jack Murdoch Moore, Gang Yan, and Eduardo G. Altmann*
 
 
