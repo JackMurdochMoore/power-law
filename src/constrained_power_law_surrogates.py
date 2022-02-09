@@ -1166,28 +1166,28 @@ def gen_orig(dist_code=0, gamma=2.5, x_min=1, N=1024, zero_for_size_one_for_powe
         val_seq = gen_mc_pl_seq(N, gamma, x_min, b, mu, o=2)
         dist_str = 'c92_pl_bin_3';
     elif (dist_code == 35):#Extract a random sequence of N discretised energies for earthquakes with magnitude at least two in Southern California
-        int_energy_list = list(np.loadtxt(ts_folder_name + '/' + 'energy.txt', dtype='int'))
+        int_energy_list = list(np.loadtxt('../' + ts_folder_name + '/' + 'energy.txt', dtype='int'))
         num_events = len(int_energy_list)
         start_point = random.randint(0, num_events - N)
         val_seq = int_energy_list[start_point:(start_point + N)]
         dist_str = 'earthquakes';
     elif (dist_code == 57):#Extract a random sequence of length N
         file_name_str = 'tail-rescaled-diseases.txt'; dist_str = 'diseases-rescaled-tail'; #x_min = 2317, N = 27, NG = 27
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(np.round(val)) for val in data if val >= x_min]
         num_data = len(val_seq)
         start_point = random.randint(0, num_data - N)
         val_seq = val_seq[start_point:(start_point + N)]
     elif (dist_code == 58):#Extract a random sequence of length N
         file_name_str = 'tail-thousand-blackouts.txt'; dist_str = 'blackouts-tail'; #x_min = 235;, N = 57, NG = 57
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(np.round(val)) for val in data if val >= x_min]
         num_data = len(val_seq)
         start_point = random.randint(0, num_data - N)
         val_seq = val_seq[start_point:(start_point + N)]
     elif (dist_code == 59):#Extract a random sequence of length N
         file_name_str = 'normed-flares.txt'; dist_str = 'flares-normed'; #x_min = 1;, N = 1711, NG = 1711
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(np.round(val)) for val in data if val >= x_min]
         num_data = len(val_seq)
         start_point = random.randint(0, num_data - N)
@@ -1290,48 +1290,48 @@ def true_fun_gen(gamma, x_min, N, func_flag):
         dist_str = 'trunc_p_l_064';
     elif (func_flag == 51):#Upsample or downsample, as required, from data in a text file
         file_name_str = 'terrorism.txt'; dist_str = 'terrorism'; #x_min = 12;#+/-4, N = 9,101, NG = 547
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(val) for val in data if val >= x_min]
         val_seq = subsample(val_seq, N)#Up or downsample, as required
     elif (func_flag == 52):#Upsample or downsample, as required, from data in a text file
         file_name_str = 'words.txt'; dist_str = 'words'; #x_min = 7;#+/-2, N = 18,855, NG = 958
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(val) for val in data if val >= x_min]
         val_seq = subsample(val_seq, N)#Up or downsample, as required
     elif (func_flag == 53):#Upsample or downsample, as required, from data in a text file
         file_name_str = 'rescaled-diseases.txt'; dist_str = 'diseases-rescaled'; #x_min = 2317, N = 72, NG = 27
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(val) for val in data if val >= x_min]
         val_seq = subsample(val_seq, N)#Up or downsample, as required
     elif (func_flag == 55):#Upsample or downsample, as required, from data in a text file
         file_name_str = 'blackouts.txt'; dist_str = 'blackouts'; #x_min = 230;#+/-90, N = 211, NG = 57
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         data = [round(val/1000) for val in data];
         val_seq = [int(val) for val in data if val >= x_min]
         val_seq = subsample(val_seq, N)#Up or downsample, as required
     elif (func_flag == 56):#Upsample or downsample, as required, from data in a text file
         file_name_str = 'flares.txt'; dist_str = 'flares'; #x_min = 323;#N = 12773, NG = 1711
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(val) for val in data if val >= x_min]
         val_seq = subsample(val_seq, N)#Up or downsample, as required
     elif (func_flag == 57):#Upsample or downsample, as required, from data in a text file
         file_name_str = 'tail-rescaled-diseases.txt'; dist_str = 'diseases-rescaled-tail'; #x_min = 2317, N = 27, NG = 27
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(val) for val in data if val >= x_min]
         val_seq = subsample(val_seq, N)#Up or downsample, as required
     elif (func_flag == 58):#Upsample or downsample, as required, from data in a text file
         file_name_str = 'tail-thousand-blackouts.txt'; dist_str = 'blackouts-tail'; #x_min = 235;, N = 57, NG = 57
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(val) for val in data if val >= x_min]
         val_seq = subsample(val_seq, N)#Up or downsample, as required
     elif (func_flag == 59):#Upsample or downsample, as required, from data in a text file
         file_name_str = 'normed-flares.txt'; dist_str = 'flares-normed'; #x_min = 1;, N = 1711, NG = 1711
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(val) for val in data if val >= x_min]
         val_seq = subsample(val_seq, N)#Up or downsample, as required
     elif (func_flag == 62):#Upsample or downsample, as required, from data in a text file
         file_name_str = 'energy.txt';#x_min = 1; N = 59555, NG = 59555
-        data = np.loadtxt(ts_folder_name + '/' + file_name_str)
+        data = np.loadtxt('../' + ts_folder_name + '/' + file_name_str)
         val_seq = [int(val) for val in data if val >= x_min]
         val_seq = subsample(val_seq, N)#Up or downsample, as required
     return val_seq
