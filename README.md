@@ -3,7 +3,7 @@ This repository contains the codes to generate different types of constrained (a
 
 - generate constrained surrogates based on a time series
 - perform simple hypothesis tests with constrained surrogates
-- reproduce the results of the manuscript *Non-parametric power-law surrogates", by Jack Murdoch Moore, Gang Yan, and Eduardo G. Altmann*
+- reproduce the results of the manuscript *Non-parametric power-law surrogates*, by Jack Murdoch Moore, Gang Yan, and Eduardo G. Altmann
 
 
 # How-to use
