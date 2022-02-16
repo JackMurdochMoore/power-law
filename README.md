@@ -25,9 +25,10 @@ In order to reproduce the results of the manuscript, you should run the notebook
 - src: contains source code (i.e., the module 'constrained_power_law_surrogates.py')
 - time series: contains the data used in this repository
 - results: stores the outputs of the calculations
-- figures: produces most figures shown in the manuscript
-- notebooks: contains Jupyter notebooks 'tutorial.ipynb', 'generate-results.ipynb', and 'make-figures.ipynb'
+- reproduce_paper: code and figures that reproduce results of the manuscript
+
 
 ## Files
 
 - 'requirements.txt': python packages required in the repository.
+- 'tutorial.ipynb': A tutorial to generate surrogates based on a new or [existing time series](https://github.com/JackMurdochMoore/power-law/tree/main/time-series).
