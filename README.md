@@ -23,9 +23,8 @@ In order to reproduce the results of the manuscript, you should run the notebook
 ## Folders
 
 - src: contains source code (i.e., the module 'constrained_power_law_surrogates.py')
-- time series: contains the data used in this repository
-- results: stores the outputs of the calculations
-- reproduce_paper: code and figures that reproduce results of the manuscript
+- time-series: contains the data used in this repository
+- reproduce-paper: code, output data and figures that reproduce the results of the manuscript
 
 
 ## Files
