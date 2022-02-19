@@ -35,6 +35,7 @@ from scipy.stats import rankdata#For ordinal patterns
 import itertools# Find all factors of an integer
 import math as math# For rounding
 import codecs, json# Saving and loading data in .json format
+import matplotlib.pyplot as plt#For plotting
 # 
 # 
 # 
@@ -1435,4 +1436,78 @@ def calc_val_eff_mats(gamma, stat_fun_dict, stat_code_list, x_min, N, func_flag,
     val_list_list_list = np.array(val_list_list_list)#[num_surr_types, num_surr, num_stats]
     
     return val_list_list_list
+#
+#
+# Make plots to compare original sequences with surrogates:
+def plot_surr_seq(surr_seq, obs_seq=[], method_name=[], ax=[], x_label='Time', y_label='Value'):
+    N = len(surr_seq)
+    if not method_name:
+        method_name = 'Surrogate'
+    if not ax:
+        fig, ax = plt.subplots(1, 1, figsize=(6, 6))
+    if obs_seq:
+        match_seq = [obs_seq[ii] if surr_seq[ii] == obs_seq[ii] else np.nan for ii in range(N)]
+        ax.scatter(list(range(N)), obs_seq, marker='o')
+        ax.scatter(list(range(N)), surr_seq, marker='o')
+        ax.scatter(list(range(N)), match_seq, marker='o')
+        leg_labels = ['Observed', method_name, 'Equal']
+    else:
+        leg_labels = [method_name]
+        ax.scatter(list(range(N)), surr_seq, marker='o')
+        leg_labels = [method_name]
+    ax.set_yscale('log')
+    ax.legend(labels=leg_labels, framealpha=0.5)
+    ax.set_xlabel(x_label)
+    ax.set_ylabel(y_label)
+#
+# Calculate KS-distance relative to maximum likelihood power-law:
+def ks_stat(seq):
+    x_min = min(seq)
+    gamma_m_l = estim_scale_exp(seq, x_min)
+    return calc_ks_stat(seq, x_min, gamma_m_l)
+#
+# Calculate conditional entropy of order one:
+def cond_ent_o_1(seq):
+    return cond_entropy_o_n(seq, 1)
 # 
+# Calculate conditional entropy of order two:
+def cond_ent_o_2(seq):
+    return cond_entropy_o_n(seq, 2)
+# 
+# Perform hypothesis tests and print output:
+def hypothesis_test(obs_seq, method='cons', num_surr = 19, scale_exp=2.5, b=3, o=1, L=2, num_trans=10**5, stat_func_list=[ks_stat]):
+    x_min = min(obs_seq)
+    surr_seq_list = gen_power_law_surr_list(obs_seq, surr_method=method, x_min=x_min, num_surr=num_surr, scale_exp=scale_exp, b=b, o=o, L=L, num_trans=num_trans)
+    quantile_list = []
+    p_val_left_tail_list = []
+    p_val_right_tail_list = []
+    p_val_two_tail_list = []
+    print("Using surrogate method: " + str(method) + ':')
+    print("Equating lower cut-off parameter *x_min* with minimum value of argument *obs_seq*: x_min*=" + str(x_min))
+    for stat_func in stat_func_list:#Iterate over discriminating statistics
+        print("\t With statistic: " + stat_func.__name__ + ":")
+        #Calculate values of discrimintating statistic for observed sequence and surrogate sequences:
+        obs_stat = stat_func(obs_seq)
+        stat_val_surr_list = [stat_func(surr_seq) for surr_seq in surr_seq_list]
+        #Add small random perturbations to avoid ties:
+        abs_obs_stat = abs(obs_stat)
+        obs_stat = obs_stat + 10**-6*abs_obs_stat*(np.random.uniform(size=1) - 0.5)
+        stat_val_surr_list = [stat_val_surr + 10**-6*abs_obs_stat*(np.random.uniform(size=1) - 0.5) for stat_val_surr in stat_val_surr_list]#Add small random perturbations to avoid ties
+        stat_val_surr_list = np.array(stat_val_surr_list)
+        #Work out rank of observed statistic (position of statistic corresponding to observed sequence when statistics corresponding to observed sequence and surrogate sequences are ranked from smallest to largest)
+        rankMin = 1 + sum(stat_val_surr_list < obs_stat)
+        rankMax = 1 + sum(stat_val_surr_list <= obs_stat)
+        r = random.randint(rankMin, rankMax)
+        q = (r - 0.5)/(num_surr + 1)
+        quantile_list = quantile_list + [q]
+        p_left = q
+        p_val_left_tail_list = p_val_left_tail_list + [p_left]
+        p_right = 1 - q
+        p_val_right_tail_list = p_val_right_tail_list + [p_right]
+        p_two = 2*min([p_left, p_right])
+        p_val_two_tail_list = p_val_two_tail_list + [p_two]
+        print("\t\t Quantile: " + str(q))
+        print("\t\t p-value for left-tailed test: " + str(p_left))
+        print("\t\t p-value for right-tailed test: " + str(p_right))
+        print("\t\t p-value for two-sided test: " + str(p_two))
+    return quantile_list, p_val_left_tail_list, p_val_right_tail_list, p_val_two_tail_list
