@@ -6,7 +6,7 @@ This repository contains the codes to generate different types of constrained (a
 - reproduce the results of the manuscript *Non-parametric power-law surrogates*, by Jack Murdoch Moore, Gang Yan, and Eduardo G. Altmann
 
 
-# How-to use
+# How to use
 
 
 A tutorial to generate surrogates based on a new or existing time series is given in the [Jupyter notebook](https://jupyter.org/) 'tutorial.ipynb' in the current folder:
