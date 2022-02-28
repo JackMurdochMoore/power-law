@@ -1509,5 +1509,5 @@ def hypothesis_test(obs_seq, method='cons', num_surr = 19, scale_exp=2.5, b=3, o
         print("\t\t Quantile: " + str(q))
         print("\t\t p-value for left-tailed test: " + str(p_left))
         print("\t\t p-value for right-tailed test: " + str(p_right))
-        print("\t\t p-value for two-sided test: " + str(p_two))
+        print("\t\t p-value for two-tailed test: " + str(p_two))
     return quantile_list, p_val_left_tail_list, p_val_right_tail_list, p_val_two_tail_list
