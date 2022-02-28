@@ -9,7 +9,7 @@ This repository contains the codes to generate different types of constrained (a
 # How to use
 
 
-A tutorial to generate surrogates based on a new or existing time series is given in the [Jupyter notebook](https://jupyter.org/) 'tutorial.ipynb'(https://github.com/JackMurdochMoore/power-law/blob/main/tutorial.ipynb) in the current folder.
+A tutorial to generate surrogates based on a new or existing time series is given in the [Jupyter notebook](https://jupyter.org/) ['tutorial.ipynb'](https://github.com/JackMurdochMoore/power-law/blob/main/tutorial.ipynb) in the current folder.
 
 In order to reproduce the results of the manuscript, you should run the notebook 'generate-results.ipynb' with the parameters of the manuscript (to generate the results) and the notebook 'make-figures.ipynb' (to generate the figures). Both 'generate-results.ipynb' and 'make-figures.ipynb' are in the folder [reproduce-paper](https://github.com/JackMurdochMoore/power-law/tree/main/reproduce-paper).
 
