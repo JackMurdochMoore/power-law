@@ -27,3 +27,7 @@ In order to reproduce the results of the manuscript, you should run the notebook
 
 - 'requirements.txt': python packages required in the repository.
 - 'tutorial.ipynb': A tutorial to generate surrogates based on a new or [existing time series](https://github.com/JackMurdochMoore/power-law/tree/main/time-series).
+
+## References
+
+- "Nonparametric Power-Law Surrogates", Jack Murdoch Moore, Gang Yan, and Eduardo G. Altmann, [Phys. Rev. X 12, 021056 (2022)](https://doi.org/10.1103/PhysRevX.12.021056)
