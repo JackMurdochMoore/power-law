@@ -416,8 +416,8 @@ def count_mat_to_surr(f0, u, v):
         rng = np.concatenate(([0], np.cumsum(ec)), axis=0);
 #         if sum((rng < 0.999) & (rng > 0.001)):#To see whether there is any randomness
 #             print(rng)
-        sr = random.random();
-        indx = (sr >= rng[0:-1]) & (sr <= rng[1:]);
+        sr = np.random.random();
+        indx = int(np.interp(sr, rng, list(range(len(rng)))))#Updated 2024.11.4
         ut = int(numb[indx, 1]);
         f[u, ut] -= 1;
         u = ut;
