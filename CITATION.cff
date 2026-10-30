@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the associated article."
+title: "Code for Nonparametric Power-Law Surrogates"
+authors:
+  - family-names: "Moore"
+    given-names: "Jack Murdoch"
+  - family-names: "Yan"
+    given-names: "Gang"
+  - family-names: "Altmann"
+    given-names: "Eduardo G."
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Moore"
+      given-names: "Jack Murdoch"
+    - family-names: "Yan"
+      given-names: "Gang"
+    - family-names: "Altmann"
+      given-names: "Eduardo G."
+  title: "Nonparametric Power-Law Surrogates"
+  journal: "Physical Review X"
+  volume: 12
+  issue: 2
+  start: "021056"
+  year: 2022
+  doi: "10.1103/PhysRevX.12.021056"
+  url: "https://doi.org/10.1103/PhysRevX.12.021056"
